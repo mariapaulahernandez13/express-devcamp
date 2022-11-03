@@ -10,7 +10,10 @@ const BootcampModel = require('../models/bootcamp')
 const Bootcamp = BootcampModel(sequelize, DataTypes)
 
 // Listar todos los bootcamps
-exports.getAllBootcamps = (req, res) => {
+exports.getAllBootcamps = async (req, res) => {
+    // Traer todos los bootcamps
+    const bootcamps = await Bootcamp.findAll();
+    // Responde con todos los datos
     res
         .status(200)
         .json({

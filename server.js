@@ -48,58 +48,6 @@ app.get('/', (request, response) => {
 
 // Endpointss de dominio
 // Endpoint bootcamp
-// Listar todos los bootcamps
-app.get('/api/v1/bootcamps', (req, res) => {
-    res
-        .status(200)
-        .json({
-            "success": true,
-            "data": "Aquí van a salir todos los bootcamps"
-        })
-})
-
-// Listar bootcamp por id
-app.get('/api/v1/bootcamps/:id', (req, res) => {
-    console.log(req.params.id)
-    res
-        .status(200)
-        .json({
-            "success": true,
-            "data": `Aquí va a salir el bootcamp cuyo id es ${req.params.id}`
-        })
-})
-
-// Actualizar bootcamp por id
-app.put('/api/v1/bootcamps/:id', (req, res) => {
-    console.log(req.params.id)
-    res
-        .status(200)
-        .json({
-            "success": true,
-            "data": `Aquí va a actualizarse el bootcamp cuyo id es ${req.params.id}`
-        })
-})
-
-// Eliminar bootcamp por id
-app.delete('/api/v1/bootcamps/:id', (req, res) => {
-    console.log(req.params.id)
-    res
-        .status(200)
-        .json({
-            "success": true,
-            "data": `Aquí va a eliminarse el bootcamp cuyo id es ${req.params.id}`
-        })
-})
-
-// Crear nuevo bootcamp
-app.post('/api/v1/bootcamps', (req, res) => {
-    res
-        .status(200)
-        .json({
-            "success": true,
-            "data": "Aquí vamos a registrar bootcamp"
-        })
-})
 
 // Imprimir la lista de endpoints válidas en elproyecto
 console.log(listEndpoint(app))
