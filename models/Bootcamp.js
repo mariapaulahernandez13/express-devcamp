@@ -14,12 +14,75 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Bootcamp.init({
-    name: DataTypes.STRING,
-    description: DataTypes.STRING,
-    website: DataTypes.STRING,
-    phone: DataTypes.STRING,
-    average_rating: DataTypes.INTEGER,
-    average_cost: DataTypes.FLOAT
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      isUnique: true,
+      validate: {
+        isAlpha: {
+          args: true,
+          msg: 'Name debe tener solo letras'
+        },
+        notNull: {
+          args: true,
+          msg: 'Name debe estar presente'
+        },
+        notEmpty: {
+          args: true,
+          msg: 'Name no debe ser vacío'
+        },
+      }
+    },
+    description: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          args: true,
+          msg: 'Description debe estar presente'
+        }
+      }
+    },
+    website: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          args: true,
+          msg: 'Website debe estar presente'
+        }
+      }
+    },
+    phone: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          args: true,
+          msg: 'Phone debe estar presente'
+        }
+      }
+    },
+    average_rating: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          args: true,
+          msg: 'Average_rating debe estar presente'
+        }
+      }
+    },
+    average_cost: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          args: true,
+          msg: 'Average_cost debe estar presente'
+        }
+      }
+    }
   }, {
     sequelize,
     modelName: 'Bootcamp',

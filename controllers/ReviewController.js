@@ -4,46 +4,46 @@ const sequelize = require('../config/seq')
 // Datatypes de sequelize
 const { DataTypes, ValidationError } = require('sequelize')
 // El modelo
-const CourseModel = require('../models/courses')
+const ReviewModel = require('../models/reviews')
 
 // Crear la entidad 
-const Course = CourseModel(sequelize, DataTypes)
+const Review = ReviewModel(sequelize, DataTypes)
 
-// Listar todos los courses
-exports.getAllCourses = async (req, res) => {
+// Listar todos los Reviews
+exports.getAllReviews = async (req, res) => {
     try {
-        // Traer todos los courses
-        const courses = await Course.findAll();
+        // Traer todos los Reviews
+        const reviews = await Review.findAll();
         // Response con todos los datos
         res
         .status(200)
         .json({
             "success": true,
-            "data": courses
+            "data": reviews
         })
     } catch (error) {
         res.status(400).json({"success": false, "errors": "error del servidor desconocido"})
     }
 }
 
-// Listar course por id
-exports.getSingleCourse = async (req, res) => {
+// Listar Review por id
+exports.getSingleReview = async (req, res) => {
     try {
         console.log(req.params.id)
-        const singleCourse = await Course.findByPk(req.params.id);
-        if(singleCourse){
+        const singleReview = await Review.findByPk(req.params.id);
+        if(singleReview){
             res
             .status(200)
             .json({
                 "success": true,
-                "data": singleCourse
+                "data": singleReview
             })
         }else{
             res
             .status(400)
             .json({
                 "success": true,
-                "data": "Course no existente"
+                "data": "Review no existente"
             })
         }
     } catch (error) {
@@ -51,32 +51,32 @@ exports.getSingleCourse = async (req, res) => {
     }
 }
 
-// Actualizar course por id
-exports.updateCourse = async (req, res) => {
+// Actualizar Review por id
+exports.updateReview = async (req, res) => {
     try {
         console.log(req.params.id)
-        const singleCourse = await Course.findByPk(req.params.id);
-        if(!singleCourse){
+        const singleReview = await Review.findByPk(req.params.id);
+        if(!singleReview){
             res
             .status(200)
             .json({
                 "success": false,
-                "data": `Course no existente`
+                "data": `Review no existente`
             })
         }else{
-            await Course.update(req.body, {
+            await Review.update(req.body, {
                 where: {
                     id: req.params.id
                 }
             })
 
-            const updatedCourse = await Course.findByPk(req.params.id);
+            const updatedReview = await Review.findByPk(req.params.id);
 
             res
                 .status(200)
                 .json({
                     "success": false,
-                    "data": updatedCourse
+                    "data": updatedReview
                 })
         }
     } catch (error) {
@@ -84,20 +84,20 @@ exports.updateCourse = async (req, res) => {
     }
 }
 
-// Eliminar course por id
-exports.deleteCourse = async (req, res) => {
+// Eliminar Review por id
+exports.deleteReview = async (req, res) => {
     //console.log(req.params.id)
     try {
-        const singleCourse = await Course.findByPk(req.params.id);
-        if(!singleCourse){
+        const singleReview = await Review.findByPk(req.params.id);
+        if(!singleReview){
             res
             .status(200)
             .json({
                 "success": false,
-                "errors": "Course eliminado"
+                "errors": "Review eliminado"
             })
         }else{
-            await Course.destroy({
+            await Review.destroy({
                 where: {
                     id: req.params.id
                 }
@@ -113,15 +113,15 @@ exports.deleteCourse = async (req, res) => {
     }
 }
 
-// Crear nuevo course
-exports.createCourse = async (req, res) => {
+// Crear nuevo Review
+exports.createReview = async (req, res) => {
     try {
-        const newCourse = await Course.create(req.body)
+        const newReview = await Review.create(req.body)
         res
         .status(200)
         .json({
             "success": true,
-            "data": newCourse
+            "data": newReview
         })
     } catch (error) {
         if(error instanceof ValidationError){

@@ -96,7 +96,7 @@ exports.deleteUser = async (req, res) => {
             .json({
                 "success": false,
                 "errors": "Usuario eliminado"
-        })
+            })
         } else {
             await User.destroy({
                 where: {
